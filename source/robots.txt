@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://kubernetes.iswbm.com/sitemap.xml

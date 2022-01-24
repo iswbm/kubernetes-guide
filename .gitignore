@@ -1,0 +1,5 @@
+.idea/
+*.pyc
+Pipfile
+test*
+build
