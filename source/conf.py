@@ -46,7 +46,7 @@ source_suffix = ['.rst']
 master_doc = 'index'
 
 # General information about the project.
-project = '大白话K8S'
+project = '图解K8S'
 copyright = '王炳明'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -54,9 +54,9 @@ copyright = '王炳明'
 # built documents.
 #
 # The short X.Y version.
-version = '更新中'
+version = ''
 # The full version, including alpha/beta/rc tags.
-release = '1.0.0'
+release = '连载中'
 
 exclude_patterns = []
 
@@ -105,7 +105,7 @@ _exts = "../exts"
 sys.path.append(os.path.abspath(_exts))
 
 html_js_files = [
-    'js/readmore.js',
+#    'js/readmore.js',
     'js/baidutongji.js',
 ]
 
@@ -113,9 +113,9 @@ author = '王炳明'
 copyright = '2022,  王炳明'
 exclude_patterns = ['_build']
 master_doc = 'index'
-project = '大白话 K8S'
-release = '1.0'
-version = '1.0'
+project = '图解K8S'
+release = ''
+version = '连载中'
 
 # Options for extensions.
 disqus_shortname = 'iswbm'  # Add this line to conf.py.
