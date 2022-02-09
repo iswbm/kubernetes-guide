@@ -65,11 +65,11 @@ registry.cn-hangzhou.aliyuncs.com/google_containers/pause:3.6
 
 我们在同一 Pod 里所有容器里看到的网络视图，都是完全一样的，包括网络设备、IP 地址、Mac 地址等等，因为他们其实全是同一份，而这一份都来自于 Pod 第一次创建的这个 Infra container。
 
-由于所有的业务容器都要依赖于 pause 容器，因此在 Pod 启动时，它总是创建的第一个容器，可以说 Pod 的生命周期就是 pause 容器的生命周期。
+由于所有的应用容器都要依赖于 pause 容器，因此在 Pod 启动时，它总是创建的第一个容器，可以说 Pod 的生命周期就是 pause 容器的生命周期。
 
 ## 3. 手工模拟 Pod
 
-从上面我们已经知道，一个 Pod 从表面上来看至少由一个容器组成，而实际上一个 Pod 至少要有包含两个容器，一个是业务容器，一个是 pause 容器。
+从上面我们已经知道，一个 Pod 从表面上来看至少由一个容器组成，而实际上一个 Pod 至少要有包含两个容器，一个是应用容器，一个是 pause 容器。
 
 理解了这个模型，我们就可以用以前熟悉的 docker 容器，手动创建一个真正意义上的 Pod。
 
@@ -143,7 +143,7 @@ sudo docker run -d --name ghost \
 
 到这里，我就纯手工模拟出了一个符合  K8S Pod 模型的 "Pod" ，只是它并不由 K8S 进行管理。
 
-这个 "Pod" 由一个 fake_k8s_pod_pause 容器（负责提供可稳定共享的命名空间）和两个共享 fake_k8s_pod_pause 容器命名空间的两业务容器。
+这个 "Pod" 由一个 fake_k8s_pod_pause 容器（负责提供可稳定共享的命名空间）和两个共享 fake_k8s_pod_pause 容器命名空间的两个应用容器。
 
 ### 访问 "Pod" 服务
 
