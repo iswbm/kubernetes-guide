@@ -11,6 +11,7 @@
    * [2.3 吃透 Pod 中的第三类容器 -- init 容器](https://k8s.iswbm.com/c02/p03_kubernetes-pod-init-container.html)
 - **第三章：资源调度**
    * [3.1 调度利器（一）：标签与选择器](https://k8s.iswbm.com/c03/p01_kubernetes-label-and-nodeselector.html)
+   * [3.2 调度利器（二）：污点与容忍度](https://k8s.iswbm.com/c03/p02_kubernetes-taints-and-tolerations.html)
 - **附：加餐分享**
    * [1. 排查 K8S Pod 被 OOM 的思路及建议](https://k8s.iswbm.com/extra/p01_k8s-pod-oom-analysis.html)
    * [2. kubectl 使用备忘手册](https://k8s.iswbm.com/extra/p02_kubectl-guide.html)
