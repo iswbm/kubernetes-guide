@@ -16,3 +16,4 @@
 - **附：加餐分享**
    * [1. 排查 K8S Pod 被 OOM 的思路及建议](https://k8s.iswbm.com/extra/p01_k8s-pod-oom-analysis.html)
    * [2. kubectl 使用备忘手册](https://k8s.iswbm.com/extra/p02_kubectl-guide.html)
+   * [3. 详解 kubectl patch 命令 -- strategic、json 和 merge 区别](https://k8s.iswbm.com/extra/p03_kubectl-patch-guide.html)
