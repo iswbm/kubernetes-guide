@@ -22,7 +22,7 @@ kubectl patch deployment patch-demo --patch-file patch-file-containers.yaml
 
 这些参数比较多，后面统一介绍
 
-```
+```bash
 kubectl patch \
         (-f FILENAME | TYPE NAME) \
         [-p PATCH|--patch-file FILE] \
@@ -32,8 +32,28 @@ kubectl patch \
 ## 2. option 选项
 
 使用 help 命令可以查看 option 的选项，我挑几个比较高频的选项进行讲解，其他的我暂时没有使用过，后续再研究
-
 ```bash
+Options:
+      --allow-missing-template-keys=true: If true, ignore any errors in templates when a field or map key is missing in
+the template. Only applies to golang and jsonpath output formats.
+      --dry-run='none': Must be "none", "server", or "client". If client strategy, only print the object that would be
+sent, without sending it. If server strategy, submit server-side request without persisting the resource.
+      --field-manager='kubectl-patch': Name of the manager used to track field ownership.
+  -f, --filename=[]: Filename, directory, or URL to files identifying the resource to update
+  -k, --kustomize='': Process the kustomization directory. This flag can't be used together with -f or -R.
+      --local=false: If true, patch will operate on the content of the file, not the server-side resource.
+  -o, --output='': Output format. One of:
+json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file.
+  -p, --patch='': The patch to be applied to the resource JSON file.
+      --patch-file='': A file containing a patch to be applied to the resource.
+      --record=false: Record current kubectl command in the resource annotation. If set to false, do not record the
+command. If set to true, record the command. If not set, default to updating the existing annotation value only if one
+already exists.
+  -R, --recursive=false: Process the directory used in -f, --filename recursively. Useful when you want to manage
+related manifests organized within the same directory.
+      --template='': Template string or path to template file to use when -o=go-template, -o=go-template-file. The
+template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].
+      --type='strategic': The type of patch being provided; one of [json merge strategic]
 ```
 
 ### 2.1 --dry-run
@@ -44,7 +64,7 @@ kubectl patch \
 * client：只在客户端打印更新完要更新的对象
 * server：会把要更新的对象请求发到服务端，但不持久化更新
 
-```
+```bash
 kc patch kubevirt kubevirt -n kubevirt \
         -p '[{"op": "replace", "path": "/spec/configuration/developerConfiguration/useEmulation", "value": false}]' \
         --dry-run=client \
@@ -138,7 +158,6 @@ type PodSpec struct {
 		"gender": "male",
 	}
 }
-
 ```
 
 ### 第二种：json
@@ -175,7 +194,7 @@ type PodSpec struct {
 
 它可以是 yaml 格式
 
-```
+```yaml
 spec:
   template:
     spec:
@@ -193,7 +212,7 @@ kubectl patch pod patch-demo --patch-file patch-file-tolerations.yaml --type="me
 
 也可以是 json 格式
 
-```
+```json
 {
   "spec": {
     "template": {
@@ -224,7 +243,7 @@ kubectl patch pod patch-demo --patch '{"spec":{"template":{"spec":{"tolerations"
 
 比如 pod 的 containers 在 crd 定义里就指定了 patchStrategy=merge，因为如下两条命令完全等价
 
-```
+```bash
 kubectl patch pod patch-demo -p '{"spec":{"containers":[{"name":"nginx","imagePullPolicy":"Always"}]}}'
 kubectl patch pod patch-demo -p '{"spec":{"containers":[{"name":"nginx","imagePullPolicy":"Always"}]}}' --type="merge"
 ```
